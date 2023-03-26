@@ -7,9 +7,6 @@ public class Door
 {
     [SerializeField]
     public string doorName { get; set; }
-    
-    [SerializeField]
-    public List<Room> rooms = new List<Room>();
 
     [SerializeField]
     public DoorStatus status;
@@ -30,8 +27,10 @@ public enum DoorStatus
 
 public enum DoorLockType
 {
+    None,
     Key,
     Strength,
+    Nature,
     Magic,
     Lockpicking
 } 

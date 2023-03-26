@@ -8,23 +8,13 @@ public class DungeonRoomGenerator : MonoBehaviour
 {
 
     [SerializeField]
-    public List<Room> rooms = new List<Room>();
+    public List<MonsterRoom> rooms = new List<MonsterRoom>();
 
-    void Start()
+    public Room generateRoom(int level, DoorLockType lockType)
     {
-        rooms = new List<Room>();
-        for (int i = 0; i < 5; i++)
-        {
-            Room room = generateRoom(1);
-            Debug.Log(JsonUtility.ToJson(room));
-            rooms.Add(room);
-        }
-    }
-
-    public Room generateRoom(int level)
-    {
+        
         // type
-        Room room = new MonsterRoom();
+        MonsterRoom room = new MonsterRoom();
         
         // level
         // random needs to be designed
@@ -32,18 +22,42 @@ public class DungeonRoomGenerator : MonoBehaviour
         lvl = lvl < 1 ? 1 : lvl;
         room.level = lvl;
         
-        
         // doors
-        // random needs to be designed
+        // read list of possible doors and add them to room 
         for (int i = 0; i < Random.Range(1, 4); i++)
         {
             var door = new Door();
-            door.rooms.Add(room);
             room.doors.Add(door);
+        }
+
+        // monsters
+        // if MonsterRoom read list of possible monsters and add them to room 
+        if (room.GetType() == typeof(MonsterRoom))
+        {
+            for (int i = 0; i < Random.Range(1, 4); i++)
+            {
+                var enemy = new Enemy
+                {
+                    type = "skeleton",
+                    level = Random.Range(1, 4),
+                    attack = 1,
+                    defense = 1, 
+                };
+                room.enemies.Add(enemy);
+            }
+        }
+        
+        // treasure
+        // read list of possible treasures and add them to room 
+        for (int i = 0; i < Random.Range(1, 4); i++)
+        {
+            var item = new Item()
+            {
+                name = "key",
+            };
+            room.rewards.Add(item);
         }
 
         return room;
     }
-
-
 }

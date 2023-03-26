@@ -1,16 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
+[Serializable]
 public class Enemy
 {
     [SerializeField]
-    string type;
+    public string type;
 
     [SerializeField]
-    int level;
+    public int level;
 
     [SerializeField]
-    int attack;
+    public int attack;
 
     [SerializeField]
-    int defense;
+    public int defense;
 }

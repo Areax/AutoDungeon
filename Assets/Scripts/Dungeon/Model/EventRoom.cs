@@ -1,0 +1,4 @@
+public class EventRoom : Room
+{
+
+}

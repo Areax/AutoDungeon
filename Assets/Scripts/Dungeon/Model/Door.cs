@@ -5,8 +5,11 @@ using UnityEngine;
 [Serializable]
 public class Door
 {
+    [SerializeField] 
+    public string name;
+
     [SerializeField]
-    public string doorName { get; set; }
+    public String position;
 
     [SerializeField]
     public DoorStatus status;

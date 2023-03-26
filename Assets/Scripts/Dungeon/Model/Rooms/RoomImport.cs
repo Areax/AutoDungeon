@@ -4,49 +4,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class RoomImport {
-    [SerializeField]
-    public string name;
-    
-    [SerializeField]
-    public string type;
-    
-    [SerializeField]
-    public int level;
-    
-    [SerializeField]
-    public RoomAlignment alignment;
+public class RoomImport
+{
+    [SerializeField] public string name;
+
+    [SerializeField] public string type;
+
+    [SerializeField] public int level;
+
+    //[SerializeField]
+    //public RoomAlignment alignment;
+
+    [SerializeField] public DoorImport[] doors;
 
     [SerializeField]
-    public List<DoorImport> doors;
-    
-    [SerializeField]
-    public List<EnemyImport> enemies;
+    public EnemyImport[] enemies;
 
     [SerializeField]
-    public List<ItemImport> rewards;
+    public ItemImport[] rewards;
 }
 
 [Serializable]
 public class DoorImport
 {
-    [SerializeField]
-    public string doorName;
-    
-    [SerializeField]
-    public string doorPosition;
-    
-    [SerializeField]
-    public string doorStatus;
-    
-    [SerializeField]
-    public string lockType;
-    
-    [SerializeField]
-    public int[] lockCheck;
-    
-    [SerializeField]
-    public int doorChance;
+    [SerializeField] public string doorName;
+
+    [SerializeField] public string doorPosition;
+
+    [SerializeField] public string doorStatus;
+
+    [SerializeField] public string lockType;
+
+    [SerializeField] public int[] lockCheck;
+
+    [SerializeField] public int doorChance;
 }
 
 [Serializable]
@@ -66,8 +57,8 @@ public class EnemyImport
 public class ItemImport
 {
     [SerializeField]
-    public string rewardsType;
+    public string rewardType;
     
     [SerializeField]
-    public int[] rewardsCount;
+    public int[] rewardCount;
 }

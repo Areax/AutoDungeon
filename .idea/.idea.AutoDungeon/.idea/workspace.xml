@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4e8ebb8f-8912-449c-83ee-e16f0c5c5b10" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AutoDungeon/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AutoDungeon/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/rooms/testroom.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/rooms/testroom.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/DungeonCreator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/DungeonCreator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/DungeonRoomGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/DungeonRoomGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ResourceDao.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ResourceDao.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Door.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Door.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Rooms/RoomImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Rooms/RoomImport.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +90,7 @@
       <workItem from="1679856208799" duration="29000" />
       <workItem from="1679856248318" duration="6000" />
       <workItem from="1679856287323" duration="3336000" />
-      <workItem from="1679859870167" duration="8286000" />
+      <workItem from="1679859870167" duration="12076000" />
     </task>
     <servers />
   </component>

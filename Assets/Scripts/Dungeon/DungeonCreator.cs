@@ -7,22 +7,25 @@ public class DungeonCreator : MonoBehaviour
     [SerializeField]
     private DungeonRoomGenerator roomGenerator; 
     
+    [SerializeField]
+    private List<MonsterRoom> dungeon; 
+    
     void Start()
     {
         //for (int i = 0; i < 5; i++)
         //{
-            var dungeon = generateDungeon(1);
+            dungeon = generateDungeon(1);
             //Debug.Log(JsonUtility.ToJson(dungeon));
         //}
     }
 
     // Update is called once per frame
-    List<Room> generateDungeon(int level)
+    List<MonsterRoom> generateDungeon(int level)
     {
-        var dungeonRun = new List<Room>();
+        var dungeonRun = new List<MonsterRoom>();
         
         //generate first room 
-        dungeonRun.Add(roomGenerator.generateRoom(level, DoorLockType.None));
+        dungeonRun.Add(roomGenerator.generateRoom(level, DoorLockType.None) as MonsterRoom);
         Debug.Log("Room0: "+ JsonUtility.ToJson(dungeonRun[0]));
         
         for (int i = 1; i < 5; i++)
@@ -34,7 +37,7 @@ public class DungeonCreator : MonoBehaviour
             
             Room room = roomGenerator.generateRoom(level, lastDoor.locktype);
             Debug.Log($"room{i}: {JsonUtility.ToJson(room)}");
-            dungeonRun.Add(room);
+            dungeonRun.Add(room as MonsterRoom);
         }
         
         return dungeonRun;

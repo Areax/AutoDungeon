@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Slime
   enemyStats:
     maxHitPoints: 5
-    currentHitPoints: 5
+    currentHitPoints: 10
     maxSpeed: 5
     currentSpeed: 5
     maxDexterity: 5

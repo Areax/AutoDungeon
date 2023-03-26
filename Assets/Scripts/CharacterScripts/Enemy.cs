@@ -62,6 +62,13 @@ public class Enemy : MonoBehaviour, Character
 
     public bool isTargeted = false;
 
+    private BasicAttack basicAttack = new BasicAttack();
+
+    public BasicAttack GetBasicAttack()
+    {
+        return basicAttack;
+    }
+
     public int GetLevel()
     {
         return enemyData.level;

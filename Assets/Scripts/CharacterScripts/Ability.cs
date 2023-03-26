@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ability : Object, Action
+public class Ability : MonoBehaviour, Action
 {
-    AbilityData abilityData;
+    public AbilityData abilityData;
     private int tickLastUsed = -1;
 
-    ActionEffect Action.GetEffect(Stats playerStats)
+    public ActionEffect GetEffect(Stats playerStats)
     {
         return abilityData.effect;
     }
 
-    string Action.GetName()
+    public string GetName()
     {
         return abilityData.abilityName;
     }
 
-    int Action.GetNextUsableTick()
+    public int GetNextUsableTick()
     {
         if (tickLastUsed < 0)
         {
@@ -27,7 +27,7 @@ public class Ability : Object, Action
         return tickLastUsed + abilityData.cooldown;
     }
 
-    void Action.UseAction(int currTick)
+    public void UseAction(int currTick)
     {
         tickLastUsed = currTick;
     }

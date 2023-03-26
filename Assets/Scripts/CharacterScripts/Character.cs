@@ -26,4 +26,5 @@ public interface Character
         characterStats.maxWisdon += effects.maxWisdon;
         Debug.Log("ApplyStatsEffect after: " + characterStats);
     }
+    public BasicAttack GetBasicAttack();
 }

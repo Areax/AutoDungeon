@@ -26,7 +26,16 @@ public class Stats
         string output = "";
         output += "currentHitPoints: " + currentHitPoints.ToString();
         output += "\nmaxHitPoints: " + maxHitPoints.ToString();
-        // TODO other stats
+        output += "currentSpeed: " + currentSpeed.ToString();
+        output += "\nmaxSpeed: " + maxSpeed.ToString();
+        output += "\ncurrentDexterity: " + currentDexterity.ToString();
+        output += "\nmaxDexterity: " + maxDexterity.ToString();
+        output += "\ncurrentWisdom: " + currentWisdom.ToString();
+        output += "\nmaxWisdom: " + maxWisdon.ToString();
+        output += "\ncurrentIntelligence " + maxIntelligence.ToString();
+        output += "\nmaxIntelligence: " + maxIntelligence.ToString();
+        output += "\ncurrentCharisma " + currentCharisma.ToString();
+        output += "\nmaxCharisma: " + maxCharisma.ToString();
         return output;
     }
 }

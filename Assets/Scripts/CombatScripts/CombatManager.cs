@@ -36,6 +36,16 @@ public class CombatManager : MonoBehaviour
         return new List<Action>();
     }
 
+    public List<Spell> GetSpells()
+    {
+        return player.spells;
+    }
+
+    public List<Ability> GetAbilities()
+    {
+        return player.abilities;
+    }
+
     public Player GetPlayer()
     {
         return player;

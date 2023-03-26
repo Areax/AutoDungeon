@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Spell : MonoBehaviour, Action
 {
-    SpellData spellData;
+    public SpellData spellData;
     private int tickLastUsed = -1;
 
-    ActionEffect Action.GetEffect(Stats playerStats)
+    public ActionEffect GetEffect(Stats playerStats)
     {
         return spellData.effect;
     }
 
-    string Action.GetName()
+    public string GetName()
     {
         return spellData.spellName;
     }
 
-    int Action.GetNextUsableTick()
+    public int GetNextUsableTick()
     {
         if (tickLastUsed < 0)
         {
@@ -27,7 +27,7 @@ public class Spell : MonoBehaviour, Action
         return tickLastUsed + spellData.cooldown;
     }
 
-    void Action.UseAction(int currTick)
+    public void UseAction(int currTick)
     {
         tickLastUsed = currTick;
     }

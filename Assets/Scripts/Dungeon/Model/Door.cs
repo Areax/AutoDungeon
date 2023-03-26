@@ -1,16 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[Serializable]
 public class Door
 {
     [SerializeField]
-    string doorName { get; set; }
+    public string doorName { get; set; }
+    
+    [SerializeField]
+    public List<Room> rooms = new List<Room>();
 
     [SerializeField]
-    DoorStatus status;
+    public DoorStatus status;
 
-    [SerializeField]
-    Room room;
+    [SerializeField] 
+    public DoorLockType locktype;
+
+    [SerializeField] 
+    public int lockCheck;
 }
 
 public enum DoorStatus
@@ -18,4 +26,12 @@ public enum DoorStatus
     Locked,
     Open,
     Closed
+} 
+
+public enum DoorLockType
+{
+    Key,
+    Strength,
+    Magic,
+    Lockpicking
 } 

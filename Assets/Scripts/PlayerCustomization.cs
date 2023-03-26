@@ -19,6 +19,7 @@ public class PlayerCustomization : MonoBehaviour
         }
         bodyPart.sprite = options[currOption];
     }
+
     public void previousOption(){
         currOption--;
         if(currOption<=0){
@@ -26,4 +27,11 @@ public class PlayerCustomization : MonoBehaviour
         }
         bodyPart.sprite = options[currOption];
     }
+
+    public void randomize(){
+        currOption = Random.Range(0,options.Count-1);
+        bodyPart.sprite = options[currOption];
+    }
+
+
 }

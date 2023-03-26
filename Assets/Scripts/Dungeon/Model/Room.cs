@@ -1,11 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 
+[Serializable]
 public class Room
 {
     [SerializeField]
-    private int level;
+    public int level;
 
     [SerializeField]
-    private List<Door> doors;
+    public List<Door> doors = new List<Door>();
 }

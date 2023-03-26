@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class MonsterRoom : Room
+public class TreasureRoom : Room
 {
     [SerializeField]
-    private List<Minion> minions;
+    private List<Item> treasures;
 }

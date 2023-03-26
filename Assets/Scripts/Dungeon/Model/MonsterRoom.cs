@@ -7,5 +7,5 @@ public class MonsterRoom : Room
     private List<Monster> monsters;
 
     [SerializeField]
-    private List<Reward> rewards;
+    private List<Item> rewards;
 }

@@ -9,5 +9,5 @@ public class Room
     public int level;
 
     [SerializeField]
-    public List<Door> doors = new List<Door>();
+    public List<Door> doors;
 }

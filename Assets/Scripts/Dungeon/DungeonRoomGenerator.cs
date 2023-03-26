@@ -10,7 +10,7 @@ public class DungeonRoomGenerator : MonoBehaviour
     [SerializeField]
     public List<Room> rooms = new List<Room>();
 
-    void Start()
+    public void Start()
     {
         rooms = new List<Room>();
         for (int i = 0; i < 5; i++)
@@ -24,13 +24,14 @@ public class DungeonRoomGenerator : MonoBehaviour
     public Room generateRoom(int level)
     {
         // type
-        Room room = new MonsterRoom();
+        MonsterRoom room = new MonsterRoom();
         
         // level
         // random needs to be designed
         var lvl = level + Random.Range(1, 5) - 2;
         lvl = lvl < 1 ? 1 : lvl;
         room.level = lvl;
+        room.doors = new List<Door>();
         
         
         // doors
@@ -38,9 +39,12 @@ public class DungeonRoomGenerator : MonoBehaviour
         for (int i = 0; i < Random.Range(1, 4); i++)
         {
             var door = new Door();
-            door.rooms.Add(room);
+            // door.rooms.Add(room);
             room.doors.Add(door);
         }
+
+        ResourceDao rd = new ResourceDao();
+        rd.saveMonsterRoom("uniqueName-" + level, room);
 
         return room;
     }

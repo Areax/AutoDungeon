@@ -1,12 +1,11 @@
-using UnityEngine;
 using System.Collections.Generic;
+using System;
+using UnityEngine;
 
+[Serializable]
 public class MonsterRoom : Room
 {
-    [SerializeField]
-    private List<Enemy> enemies;
+    public List<Enemy> enemies;
 
-    [SerializeField]
-    private List<Item> rewards;
-    
+    public List<Item> rewards;
 }

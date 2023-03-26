@@ -9,6 +9,8 @@ public class Door
     [SerializeField]
     DoorStatus status;
 
+    [SerializeField]
+    Room room;
 }
 
 public enum DoorStatus

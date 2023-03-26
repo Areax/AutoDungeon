@@ -9,7 +9,7 @@ public class DungeonRoomGenerator : MonoBehaviour
 
     [SerializeField]
     public List<MonsterRoom> rooms = new List<MonsterRoom>();
-
+    
     public Room generateRoom(int level, DoorLockType lockType)
     {
         
@@ -21,6 +21,7 @@ public class DungeonRoomGenerator : MonoBehaviour
         var lvl = level + Random.Range(1, 5) - 2;
         lvl = lvl < 1 ? 1 : lvl;
         room.level = lvl;
+        room.doors = new List<Door>();
         
         // doors
         // read list of possible doors and add them to room 
@@ -57,6 +58,9 @@ public class DungeonRoomGenerator : MonoBehaviour
             };
             room.rewards.Add(item);
         }
+        
+        ResourceDao rd = new ResourceDao();
+        rd.saveMonsterRoom("uniqueName-" + level, room);
 
         return room;
     }

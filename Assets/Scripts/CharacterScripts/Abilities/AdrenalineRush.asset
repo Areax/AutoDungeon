@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75112b0688db61344b295061d18b998c, type: 3}
+  m_Name: AdrenalineRush
+  m_EditorClassIdentifier: 
+  abilityName: Adrenaline Rush
+  effect:
+    effectStats:
+      maxHitPoints: 0
+      currentHitPoints: 0
+      maxSpeed: 0
+      currentSpeed: 5
+      maxDexterity: 0
+      currentDexterity: 0
+      maxStrength: 0
+      currentStrength: 5
+      maxWisdon: 0
+      currentWisdom: 0
+      maxIntelligence: 0
+      currentIntelligence: 0
+      maxCharisma: 0
+      currentCharisma: 0
+    timeBetweenEffects: 0
+    numberOfApplications: 1
+  cooldown: 10

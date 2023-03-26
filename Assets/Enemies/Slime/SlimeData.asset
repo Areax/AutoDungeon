@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c687a7da31d1b742ae3074fc2029240, type: 3}
+  m_Name: SlimeData
+  m_EditorClassIdentifier: 
+  enemyName: Slime
+  enemyStats:
+    maxHitPoints: 5
+    currentHitPoints: 5
+    maxSpeed: 5
+    currentSpeed: 5
+    maxDexterity: 5
+    currentDexterity: 5
+    maxStrength: 5
+    currentStrength: 5
+    maxWisdon: 5
+    currentWisdom: 5
+    maxIntelligence: 5
+    currentIntelligence: 5
+    maxCharisma: 5
+    currentCharisma: 5
+  level: 1

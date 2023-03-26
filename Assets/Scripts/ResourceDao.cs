@@ -49,4 +49,10 @@ public class ResourceDao : MonoBehaviour
 
         return JsonUtility.FromJson<T>(jsonString);
     }
+
+    public static T ImportJson<T>(string path)
+    {
+        TextAsset textAsset = (TextAsset)Resources.Load(path);
+        return JsonUtility.FromJson<T>(textAsset.text);
+    }
 }

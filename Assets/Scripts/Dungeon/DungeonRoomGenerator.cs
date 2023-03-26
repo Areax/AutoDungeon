@@ -12,6 +12,7 @@ public class DungeonRoomGenerator : MonoBehaviour
     
     public Room generateRoom(int level, DoorLockType lockType)
     {
+        RoomImport ri = ResourceDao.ImportJson<RoomImport>("rooms/testroom");
         
         // type
         MonsterRoom room = new MonsterRoom();
@@ -58,9 +59,6 @@ public class DungeonRoomGenerator : MonoBehaviour
             };
             room.rewards.Add(item);
         }
-        
-        ResourceDao rd = new ResourceDao();
-        rd.saveMonsterRoom("uniqueName-" + level, room);
 
         return room;
     }

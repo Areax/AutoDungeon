@@ -9,6 +9,8 @@ public interface Action
      * Applies cooldowns if needed
      */
     public void UseAction(int currTick);
+    public int GetCastTime();
     public int GetNextUsableTick();
     public string GetName();
+    public bool ShouldSelfTarget();
 }

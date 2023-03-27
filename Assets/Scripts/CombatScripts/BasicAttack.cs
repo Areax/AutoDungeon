@@ -5,11 +5,20 @@ using UnityEngine;
 public class BasicAttack : Action
 {
     private string name = "Attack";
+    private int tickLastUsed = -1;
+    private ActionEffect attackEffect;
+
+    public int GetCastTime()
+    {
+        return 1;
+    }
+
     public ActionEffect GetEffect(Stats playerStats)
     {
-        ActionEffect attackEffect = new ActionEffect();
-        attackEffect.effectStats = new Stats();
-        attackEffect.effectStats.currentHitPoints = (-1) * playerStats.currentStrength;
+        attackEffect = new ActionEffect();
+        attackEffect.effectStats = new List<Stats>();
+        attackEffect.effectStats.Add(new Stats());
+        attackEffect.effectStats[0].currentHitPoints = (-1) * playerStats.currentStrength;
         attackEffect.numberOfApplications = 1;
         return attackEffect;
     }
@@ -21,11 +30,21 @@ public class BasicAttack : Action
 
     public int GetNextUsableTick()
     {
-        throw new System.NotImplementedException();
+        if (tickLastUsed < 0)
+        {
+            return 0;
+        }
+
+        return tickLastUsed + 1;
     }
 
     public void UseAction(int currTick)
     {
-        throw new System.NotImplementedException();
+        tickLastUsed = currTick;
+    }
+
+    public bool ShouldSelfTarget()
+    {
+        return false;
     }
 }

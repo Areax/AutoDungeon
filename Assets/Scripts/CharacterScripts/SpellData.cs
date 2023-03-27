@@ -8,4 +8,6 @@ public class SpellData : ScriptableObject
     public string spellName;
     public ActionEffect effect;
     public int cooldown;
+    public int castTime;
+    public bool targetSelf;
 }

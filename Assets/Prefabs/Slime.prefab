@@ -203,6 +203,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 4712f46aef4c6c44ead9fbed66ebddd4, type: 2}
   playerRef: {fileID: 0}
   targetIndicator: {fileID: 131261097570847063}
+  combatManager: {fileID: 0}
   isTargeted: 0
 --- !u!60 &7348521976366746598
 PolygonCollider2D:

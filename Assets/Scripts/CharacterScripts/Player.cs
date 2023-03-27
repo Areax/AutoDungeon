@@ -8,6 +8,11 @@ public class Player : MonoBehaviour, Character
     public List<Ability> abilities;
 
     public Stats playerStats;
+    private BasicAttack basicAttack = new BasicAttack();
+    public BasicAttack GetBasicAttack()
+    {
+        return basicAttack;
+    }
 
 
     //  reference to the enemy the player wishes to target
@@ -20,11 +25,16 @@ public class Player : MonoBehaviour, Character
 
     public string GetName()
     {
-        throw new System.NotImplementedException();
+        return "player";
     }
 
     public Stats GetStats()
     {
         return playerStats;
+    }
+
+    public int GetHealth()
+    {
+        return playerStats.currentHitPoints;
     }
 }

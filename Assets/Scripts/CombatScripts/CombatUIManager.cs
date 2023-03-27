@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using System.Linq;
 
 public class CombatUIManager : MonoBehaviour
 {
     public CombatManager combatManager;
     public GameObject fightButton;
     public GameObject spellButton;
+    public GameObject abilityButton;
     public GameObject dynamicSpellButton;
+    public UnityEngine.UI.VerticalLayoutGroup verticalLayoutGroup;
     public void ClickFightButton()
     {
         BasicAttack basicAttack = new BasicAttack();
@@ -23,10 +28,45 @@ public class CombatUIManager : MonoBehaviour
     }
     public void ClickSpellButton()
     {
-        List<Spell> spells = combatManager.GetPlayer().spells;
-        for (int i = 0; i < spells.Count; i++)
+        clearSpellAndActivityButtons();
+        List<Spell> spells = combatManager.GetUsableSpells();
+        populateActionButtons(spells.Cast<Action>().ToList());
+    }
+    public void ClickAbilityButton()
+    {
+        clearSpellAndActivityButtons();
+        List<Ability> abilities = combatManager.GetUsableAbilities();
+        populateActionButtons(abilities.Cast<Action>().ToList());
+    }
+
+    private void populateActionButtons(List<Action> actions)
+    {
+        for (int i = 0; i < actions.Count; i++)
         {
-            Spell spell = spells[i];
+            Action action = actions[i];
+            var actionButton = Instantiate(dynamicSpellButton, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            TextMeshProUGUI buttonGUI = actionButton.GetComponentInChildren<TextMeshProUGUI>();
+            buttonGUI.text = action.GetName();
+            // TODO enemy selection
+            actionButton.GetComponent<Button>().onClick.AddListener(
+                delegate
+                {
+                    combatManager.UseAction(action, combatManager.GetEnemies());
+                    // After using the button, destroy the action options
+                    clearSpellAndActivityButtons();
+                    fightButton.gameObject.SetActive(true);
+                    abilityButton.gameObject.SetActive(true);
+                    spellButton.gameObject.SetActive(true);
+                }
+                );
+            actionButton.transform.parent = verticalLayoutGroup.transform;
+        }
+    }
+
+    private void clearSpellAndActivityButtons() {
+        for (int childI = verticalLayoutGroup.transform.childCount - 1; childI >= 0; childI--)
+        {
+            Destroy(verticalLayoutGroup.transform.GetChild(childI).gameObject);
         }
     }
 }

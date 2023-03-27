@@ -1,0 +1,16 @@
+{
+"name": "KnightRoom",
+"roomAlignment": "Religion",
+"type": "monster",
+"level": 3,
+"enemies": [
+{ "enemyType": "Knight", "enemyLevel":[3, 5], "enemyCount":[3, 5] }
+],
+"rewards": [
+{"rewardsType": "Gold", "rewardsCount": [20,25]}
+],
+"doors": [
+{"doorName": "religionDoor", "doorPosition": "left", "doorStatus":"Locked", "lockType":"Religion", "lockCheck": [5,10], "doorChance": 100},
+{"doorName": "oldMetalDoor", "doorPosition":"forward", "doorStatus":"Open", "lockType": "None", "lockCheck": [0,0], "doorChance": 100}
+]
+}

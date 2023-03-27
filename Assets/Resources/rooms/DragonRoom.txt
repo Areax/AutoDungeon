@@ -1,6 +1,6 @@
 {
 "name": "DragonRoom",
-"roomAlignment": "Stealth"
+"roomAlignment": "Stealth",
 "type": "monster",
 "level": 2,
 "enemies": [

@@ -28,12 +28,14 @@ public class CombatUIManager : MonoBehaviour
     }
     public void ClickSpellButton()
     {
-        List<Spell> spells = combatManager.GetSpells();
+        clearSpellAndActivityButtons();
+        List<Spell> spells = combatManager.GetUsableSpells();
         populateActionButtons(spells.Cast<Action>().ToList());
     }
     public void ClickAbilityButton()
     {
-        List<Ability> abilities = combatManager.GetAbilities();
+        clearSpellAndActivityButtons();
+        List<Ability> abilities = combatManager.GetUsableAbilities();
         populateActionButtons(abilities.Cast<Action>().ToList());
     }
 
@@ -51,16 +53,20 @@ public class CombatUIManager : MonoBehaviour
                 {
                     combatManager.UseAction(action, combatManager.GetEnemies());
                     // After using the button, destroy the action options
-                    for (int childI = verticalLayoutGroup.transform.childCount - 1; childI >= 0; childI--)
-                    {
-                        Destroy(verticalLayoutGroup.transform.GetChild(childI).gameObject);
-                    }
+                    clearSpellAndActivityButtons();
                     fightButton.gameObject.SetActive(true);
                     abilityButton.gameObject.SetActive(true);
                     spellButton.gameObject.SetActive(true);
                 }
                 );
             actionButton.transform.parent = verticalLayoutGroup.transform;
+        }
+    }
+
+    private void clearSpellAndActivityButtons() {
+        for (int childI = verticalLayoutGroup.transform.childCount - 1; childI >= 0; childI--)
+        {
+            Destroy(verticalLayoutGroup.transform.GetChild(childI).gameObject);
         }
     }
 }

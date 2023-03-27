@@ -11,6 +11,7 @@ public class CombatManager : MonoBehaviour
 
     public void UseAction(Action action, List<Enemy> enemies)
     {
+        action.UseAction(currentTick);
         Stats playerStats = GetPlayer().playerStats;
         ActionEffect attackEffect = action.GetEffect(playerStats);
 
@@ -30,6 +31,7 @@ public class CombatManager : MonoBehaviour
             player.target.UpdateCharacterStats(attackEffect.effectStats);
             Debug.Log(player.target.enemyStats.curHitPoints);
         }
+        ActionEffect attackEffect = action.GetEffect(playerStats).Clone();
         enemies.ForEach((Enemy enemy) =>
         {
             if (!activeEffects.ContainsKey(enemy))
@@ -58,6 +60,7 @@ public class CombatManager : MonoBehaviour
 
     public void ProcessTick()
     {
+        Debug.Log("Starting to process tick " + currentTick);
         foreach (Enemy enemy in activeEffects.Keys)
         {
             List<EffectManager> actionEffects = activeEffects[enemy];
@@ -86,8 +89,40 @@ public class CombatManager : MonoBehaviour
 
     public List<Action> GetUsableActions()
     {
-        // TODO
-        return new List<Action>();
+        List<Action> usableActions = new();
+        List<Spell> usableSpells = GetUsableSpells();
+        List<Ability> usableAbilities = GetUsableAbilities();
+        usableSpells.ForEach((spell) => { usableActions.Add(spell); });
+        usableAbilities.ForEach((ability) => { usableActions.Add(ability); });
+        return usableActions;
+    }
+
+    public List<Spell> GetUsableSpells()
+    {
+        List<Spell> usableSpells = new();
+        List<Spell> allSpells = GetSpells();
+        foreach (Spell spell in allSpells)
+        {
+            if (spell.GetNextUsableTick() <= currentTick)
+            {
+                usableSpells.Add(spell);
+            }
+        }
+        return usableSpells;
+    }
+
+    public List<Ability> GetUsableAbilities()
+    {
+        List<Ability> usableAbilities = new();
+        List<Ability> allAbilities = GetAbilities();
+        foreach (Ability ability in allAbilities)
+        {
+            if (ability.GetNextUsableTick() <= currentTick)
+            {
+                usableAbilities.Add(ability);
+            }
+        }
+        return usableAbilities;
     }
 
     public List<Spell> GetSpells()

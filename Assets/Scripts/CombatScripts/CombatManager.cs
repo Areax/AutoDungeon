@@ -12,12 +12,23 @@ public class CombatManager : MonoBehaviour
     {
         Stats playerStats = GetPlayer().playerStats;
         ActionEffect attackEffect = action.GetEffect(playerStats);
-        enemies.ForEach((Enemy enemy) =>
+
+        //  if the player does not have a target:
+        if (player.target == null)
+        {
+            //  default to the first enemy in the list
+            Debug.Log("Applying effect: " + attackEffect.effectStats.ToString());
+            enemies[0].UpdateCharacterStats(attackEffect.effectStats);
+            Debug.Log(enemies[0].enemyStats.curHitPoints);
+
+        }
+        //  otherwise, we have a target
+        else
         {
             Debug.Log("Applying effect: " + attackEffect.effectStats.ToString());
-            ((Character)enemy).ApplyStatsEffect(attackEffect.effectStats);
-            Debug.Log(enemy.enemyData.enemyStats);
-        });
+            player.target.UpdateCharacterStats(attackEffect.effectStats);
+            Debug.Log(player.target.enemyStats.curHitPoints);
+        }
     }
 
     public List<Action> GetUsableActions()

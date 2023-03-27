@@ -10,7 +10,7 @@
 {"rewardsType": "Key", "rewardsCount": [1,1]}
 ],
 "doors": [
-{"doorName": "strengthDoor", "doorPosition": "left", "doorStatus":"Locked", "lockType":"Strength", "lockCheck": [1,1], "doorChance": 50},
+{"doorName": "athleticsDoor", "doorPosition": "left", "doorStatus":"Locked", "lockType":"Athletics", "lockCheck": [1,1], "doorChance": 50},
 {"doorName": "keyDoor", "doorPosition":"right", "doorStatus":"Locked", "lockType": "Key", "lockCheck": [1,1], "doorChance": 50},
 {"doorName": "oldMetalDoor", "doorPosition":"forward", "doorStatus":"Open", "lockType": "None", "lockCheck": [0,0], "doorChance": 100}
 ]

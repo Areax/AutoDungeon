@@ -6,7 +6,7 @@ using System;
 [Serializable]
 public class ActionEffect
 {
-    public Stats effectStats;
+    public List<Stats> effectStats;
     public int timeBetweenEffects;
     public int numberOfApplications;
 }

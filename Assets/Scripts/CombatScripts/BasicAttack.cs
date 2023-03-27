@@ -5,11 +5,18 @@ using UnityEngine;
 public class BasicAttack : Action
 {
     private string name = "Attack";
+
+    public int GetCastTime()
+    {
+        return 1;
+    }
+
     public ActionEffect GetEffect(Stats playerStats)
     {
         ActionEffect attackEffect = new ActionEffect();
-        attackEffect.effectStats = new Stats();
-        attackEffect.effectStats.currentHitPoints = (-1) * playerStats.currentStrength;
+        attackEffect.effectStats = new List<Stats>();
+        attackEffect.effectStats.Add(new Stats());
+        attackEffect.effectStats[0].currentHitPoints = (-1) * playerStats.currentStrength;
         attackEffect.numberOfApplications = 1;
         return attackEffect;
     }

@@ -6,6 +6,12 @@ public class Ability : MonoBehaviour, Action
 {
     public AbilityData abilityData;
     private int tickLastUsed = -1;
+    private int currentEffectIndex = 0;
+
+    public int GetCastTime()
+    {
+        return abilityData.castTime;
+    }
 
     public ActionEffect GetEffect(Stats playerStats)
     {

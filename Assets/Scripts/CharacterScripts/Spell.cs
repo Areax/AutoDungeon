@@ -7,6 +7,11 @@ public class Spell : MonoBehaviour, Action
     public SpellData spellData;
     private int tickLastUsed = -1;
 
+    public int GetCastTime()
+    {
+        return spellData.castTime;
+    }
+
     public ActionEffect GetEffect(Stats playerStats)
     {
         return spellData.effect;

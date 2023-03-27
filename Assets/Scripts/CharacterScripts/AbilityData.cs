@@ -8,4 +8,5 @@ public class AbilityData : ScriptableObject
     public string abilityName;
     public ActionEffect effect;
     public int cooldown;
+    public int castTime;
 }

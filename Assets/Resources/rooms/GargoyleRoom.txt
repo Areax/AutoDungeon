@@ -1,0 +1,16 @@
+{
+"name": "GargoyleRoom",
+"type": "monster",
+"level": 1,
+"enemies": [
+{ "enemyType": "Gargoyle", "enemyLevel":[1, 3], "enemyCount":[1, 3] }
+],
+"rewards": [
+{"rewardsType": "Gold", "rewardsCount": [5,10]}
+],
+"doors": [
+{"doorName": "religionDoor", "doorPosition": "left", "doorStatus":"Locked", "lockType":"Religion", "lockCheck": [1,1], "doorChance": 50},
+{"doorName": "keyDoor", "doorPosition":"right", "doorStatus":"Locked", "lockType": "Key", "lockCheck": [1,1], "doorChance": 100},
+{"doorName": "oldMetalDoor", "doorPosition":"forward", "doorStatus":"Open", "lockType": "None", "lockCheck": [0,0], "doorChance": 100}
+]
+}

@@ -12,8 +12,8 @@ public class RoomImport
 
     [SerializeField] public int level;
 
-    //[SerializeField]
-    //public RoomAlignment alignment;
+    [SerializeField]
+    public RoomAlignment alignment;
 
     [SerializeField] public DoorImport[] doors;
 
@@ -57,8 +57,8 @@ public class EnemyImport
 public class ItemImport
 {
     [SerializeField]
-    public string rewardType;
+    public string rewardsType;
     
     [SerializeField]
-    public int[] rewardCount;
+    public int[] rewardsCount;
 }

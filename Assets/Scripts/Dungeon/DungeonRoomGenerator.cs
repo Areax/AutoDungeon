@@ -10,21 +10,31 @@ public class DungeonRoomGenerator : MonoBehaviour
     [SerializeField]
     public List<RoomImport> rooms = new List<RoomImport>();
 
-    public void Start()
+    public void Awake()
     {
         var roomFiles = Resources.LoadAll<TextAsset>("rooms");
         foreach (var text in roomFiles)
         {
-            Debug.Log(text.name);
             rooms.Add(JsonUtility.FromJson<RoomImport>(text.text));
         }
     }
 
     public Room generateRoom(int level, DoorLockType lockType)
     {
-        RoomImport import = ResourceDao.ImportJson<RoomImport>("rooms/testroom");
-
+        // level
+        // random needs to be designed
+        // rewrite this to load in appropriate level rooms
+        var lvl = level + Random.Range(1, 5) - 2;
+        lvl = lvl < 1 ? 1 : lvl;
         
+        // getting random room
+        RoomImport import = null;
+        while (import == null)
+        {
+            import = roomRandomizer(lvl, lockType);
+        }
+
+
         // room type
         Room room = new Room();
         if (import.type == "monster")
@@ -32,14 +42,9 @@ public class DungeonRoomGenerator : MonoBehaviour
             room = new MonsterRoom();
         }
 
-        // level
-        // random needs to be designed
-        // rewrite this to load in appropriate level rooms
-        var lvl = level + Random.Range(1, 5) - 2;
-        lvl = lvl < 1 ? 1 : lvl;
         room.level = lvl;
+       
         room.doors = new List<Door>();
-        
         // doors
         // read list of possible doors and add them to room 
         for (int i = 0; i < import.doors.Length; i++)
@@ -83,12 +88,12 @@ public class DungeonRoomGenerator : MonoBehaviour
         {
             foreach (var reward in import.rewards)
             {
-                var count = Random.Range(reward.rewardCount[0], reward.rewardCount[1]);
+                var count = Random.Range(reward.rewardsCount[0], reward.rewardsCount[1]);
                 for (int i = 0; i < count; i++)
                 {
                     var item = new Item()
                     {
-                        name = reward.rewardType,
+                        name = reward.rewardsType,
                     };
                     (room as MonsterRoom)?.rewards.Add(item);
                 }
@@ -98,5 +103,25 @@ public class DungeonRoomGenerator : MonoBehaviour
         }
 
         return room;
+    }
+
+    private RoomImport roomRandomizer(int lvl, DoorLockType lockType)
+    {
+        var list = rooms.FindAll((r) => r.level == lvl);
+
+        var chance = Random.Range(1, 4) < 2;
+        if (lockType != DoorLockType.None && lockType != DoorLockType.Key && chance)
+        {
+            list = rooms.FindAll((r) => r.alignment.ToString() == lockType.ToString());
+        }
+
+        if (list.Count < 1)
+        {
+            return null;
+        }
+        else
+        {
+            return  list[Random.Range(0, list.Count)];
+        }
     }
 }

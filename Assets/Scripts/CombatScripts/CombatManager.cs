@@ -49,6 +49,10 @@ public class CombatManager : MonoBehaviour
 
     public void ProcessTick()
     {
+        foreach (Enemy enemy in activeEffects.Keys)
+        {
+            Debug.Log("Before tick " + currentTick + " enemy " + enemy.GetName() + " health: " + enemy.enemyStats.curHitPoints);
+        }
         Debug.Log("Starting to process tick " + currentTick);
         foreach (Enemy enemy in activeEffects.Keys)
         {
@@ -72,7 +76,7 @@ public class CombatManager : MonoBehaviour
         currentTick += 1;
         foreach (Enemy enemy in activeEffects.Keys)
         {
-            Debug.Log("After tick " + currentTick + " enemy " + enemy.GetName() + " stats: " + enemy.GetStats());
+            Debug.Log("After tick " + currentTick + " enemy " + enemy.GetName() + " health: " + enemy.enemyStats.curHitPoints);
         }
     }
 

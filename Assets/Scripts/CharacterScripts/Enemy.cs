@@ -162,9 +162,6 @@ public class Enemy : MonoBehaviour, Character
                 targetIndicator.SetActive(isTargeted);
                 break;
         }
-
-
-
     }
 
     //  method for updating the current stats of this character

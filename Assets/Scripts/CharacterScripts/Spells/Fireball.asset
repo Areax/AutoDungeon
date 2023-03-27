@@ -14,8 +14,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Fireball
   effect:
-    effectStats: []
+    effectStats:
+    - maxHitPoints: 0
+      currentHitPoints: -3
+      maxSpeed: 0
+      currentSpeed: 0
+      maxDexterity: 0
+      currentDexterity: 0
+      maxStrength: 0
+      currentStrength: 0
+      maxWisdon: 0
+      currentWisdom: 0
+      maxIntelligence: 0
+      currentIntelligence: 0
+      maxCharisma: 0
+      currentCharisma: 0
+    - maxHitPoints: 0
+      currentHitPoints: -3
+      maxSpeed: 0
+      currentSpeed: 0
+      maxDexterity: 0
+      currentDexterity: 0
+      maxStrength: 0
+      currentStrength: 0
+      maxWisdon: 0
+      currentWisdom: 0
+      maxIntelligence: 0
+      currentIntelligence: 0
+      maxCharisma: 0
+      currentCharisma: 0
+    - maxHitPoints: 0
+      currentHitPoints: -3
+      maxSpeed: 0
+      currentSpeed: 0
+      maxDexterity: 0
+      currentDexterity: 0
+      maxStrength: 0
+      currentStrength: 0
+      maxWisdon: 0
+      currentWisdom: 0
+      maxIntelligence: 0
+      currentIntelligence: 0
+      maxCharisma: 0
+      currentCharisma: 0
     timeBetweenEffects: 1
     numberOfApplications: 3
   cooldown: 3
-  castTime: 0
+  castTime: 1

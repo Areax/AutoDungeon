@@ -12,25 +12,14 @@ public class CombatManager : MonoBehaviour
     public void UseAction(Action action, List<Enemy> enemies)
     {
         action.UseAction(currentTick);
+
+        Enemy target = player.target;
+        //  if the player does not have a target set it to the first enemy
+        if (target == null)
+        {
+            target = enemies[0];
+        }
         Stats playerStats = GetPlayer().playerStats;
-        ActionEffect attackEffect = action.GetEffect(playerStats);
-
-        //  if the player does not have a target:
-        if (player.target == null)
-        {
-            //  default to the first enemy in the list
-            Debug.Log("Applying effect: " + attackEffect.effectStats.ToString());
-            enemies[0].UpdateCharacterStats(attackEffect.effectStats);
-            Debug.Log(enemies[0].enemyStats.curHitPoints);
-
-        }
-        //  otherwise, we have a target
-        else
-        {
-            Debug.Log("Applying effect: " + attackEffect.effectStats.ToString());
-            player.target.UpdateCharacterStats(attackEffect.effectStats);
-            Debug.Log(player.target.enemyStats.curHitPoints);
-        }
         ActionEffect attackEffect = action.GetEffect(playerStats).Clone();
         enemies.ForEach((Enemy enemy) =>
         {
@@ -67,7 +56,7 @@ public class CombatManager : MonoBehaviour
             foreach (EffectManager effectManager in actionEffects)
             {
                 ActionEffect effect = effectManager.effect;
-                ((Character)enemy).ApplyStatsEffect(effect.effectStats[effectManager.relativeTick]);
+                enemy.UpdateCharacterStats(effect.effectStats[effectManager.relativeTick]);
                 effectManager.relativeTick += 1;
             }
             // Loop over the effects backwards, removing the ones which have finished

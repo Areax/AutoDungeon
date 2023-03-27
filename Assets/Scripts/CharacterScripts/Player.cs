@@ -27,4 +27,9 @@ public class Player : MonoBehaviour, Character
     {
         throw new System.NotImplementedException();
     }
+
+    public Stats GetStats()
+    {
+        return playerStats;
+    }
 }

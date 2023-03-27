@@ -1,0 +1,16 @@
+{
+"name": "DemonRoom",
+"type": "monster",
+"level": 3,
+"enemies": [
+{ "enemyType": "Demon", "enemyLevel":[3, 5], "enemyCount":[3, 5] }
+],
+"rewards": [
+{"rewardsType": "Gold", "rewardsCount": [20,25]},
+{"rewardsType": "Key", "rewardsCount": [1,1]}
+],
+"doors": [
+{"doorName": "arcanaDoor", "doorPosition": "left", "doorStatus":"Locked", "lockType":"Arcana", "lockCheck": [5,10], "doorChance": 50},
+{"doorName": "keyDoor", "doorPosition":"right", "doorStatus":"Locked", "lockType": "Key", "lockCheck": [1,1], "doorChance": 100}
+]
+}

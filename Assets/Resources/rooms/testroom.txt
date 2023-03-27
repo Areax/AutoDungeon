@@ -1,0 +1,17 @@
+{
+"name": "GhostRoom",
+"type": "monster",
+"level": 2,
+"enemies": [
+{ "enemyType": "Ghost", "enemyLevel":[2, 4], "enemyCount":[2, 4] }
+],
+"rewards": [
+{"rewardType": "Gold", "rewardCount": [15,20]},
+{"rewardType": "Key", "rewardCount": [1,1]}
+],
+"doors": [
+{"doorName": "strengthDoor", "doorPosition": "right", "doorStatus":"locked", "lockType":"Strength", "lockCheck": [1,5], "doorChance": 50},
+{"doorName": "keyDoor", "doorPosition":"forward", "doorStatus":"locked", "lockType": "Key", "lockCheck": [1,1], "doorChance": 50},
+{"doorName": "oldMetalDoor", "doorPosition":"left", "doorStatus":"open", "lockType": "None", "lockCheck": [0,0], "doorChance": 100}
+]
+}

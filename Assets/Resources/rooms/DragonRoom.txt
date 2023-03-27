@@ -1,0 +1,17 @@
+{
+"name": "DragonRoom",
+"roomAlignment": "Stealth"
+"type": "monster",
+"level": 2,
+"enemies": [
+{ "enemyType": "Dragon", "enemyLevel":[2, 4], "enemyCount":[2, 4] }
+],
+"rewards": [
+{"rewardsType": "Gold", "rewardsCount": [15,20]},
+{"rewardsType": "Key", "rewardsCount": [1,1]}
+],
+"doors": [
+{"doorName": "stealthDoor", "doorPosition": "left", "doorStatus":"Locked", "lockType":"Stealth", "lockCheck": [1,5], "doorChance": 100},
+{"doorName": "keyDoor", "doorPosition":"forward", "doorStatus":"Locked", "lockType": "Key", "lockCheck": [1,1], "doorChance": 100},
+]
+}

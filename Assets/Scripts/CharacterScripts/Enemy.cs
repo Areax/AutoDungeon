@@ -102,7 +102,7 @@ public class Enemy : MonoBehaviour, Character
         this.enemyStats.baseStrength = enemyData.enemyStats.maxStrength;
         this.enemyStats.curStrength = this.enemyStats.baseStrength;
 
-        this.enemyStats.baseWisdom = enemyData.enemyStats.maxWisdon;
+        this.enemyStats.baseWisdom = enemyData.enemyStats.maxWisdom;
         this.enemyStats.curWisdom = this.enemyStats.baseWisdom;
 
         this.enemyStats.baseIntelligence = enemyData.enemyStats.maxIntelligence;
@@ -183,5 +183,10 @@ public class Enemy : MonoBehaviour, Character
             //  destroy this game object
             Destroy(this.gameObject);
         }
+    }
+
+    public int GetHealth()
+    {
+        return enemyStats.curHitPoints;
     }
 }

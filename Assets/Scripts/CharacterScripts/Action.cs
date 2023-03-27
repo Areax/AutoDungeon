@@ -12,4 +12,5 @@ public interface Action
     public int GetCastTime();
     public int GetNextUsableTick();
     public string GetName();
+    public bool ShouldSelfTarget();
 }

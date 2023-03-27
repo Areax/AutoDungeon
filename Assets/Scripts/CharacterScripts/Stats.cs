@@ -14,7 +14,7 @@ public class Stats
     public int currentDexterity;
     public int maxStrength;
     public int currentStrength;
-    public int maxWisdon;
+    public int maxWisdom;
     public int currentWisdom;
     public int maxIntelligence;
     public int currentIntelligence;
@@ -31,7 +31,7 @@ public class Stats
         output += "\ncurrentDexterity: " + currentDexterity.ToString();
         output += "\nmaxDexterity: " + maxDexterity.ToString();
         output += "\ncurrentWisdom: " + currentWisdom.ToString();
-        output += "\nmaxWisdom: " + maxWisdon.ToString();
+        output += "\nmaxWisdom: " + maxWisdom.ToString();
         output += "\ncurrentIntelligence " + maxIntelligence.ToString();
         output += "\nmaxIntelligence: " + maxIntelligence.ToString();
         output += "\ncurrentCharisma " + currentCharisma.ToString();

@@ -25,11 +25,16 @@ public class Player : MonoBehaviour, Character
 
     public string GetName()
     {
-        throw new System.NotImplementedException();
+        return "player";
     }
 
     public Stats GetStats()
     {
         return playerStats;
+    }
+
+    public int GetHealth()
+    {
+        return playerStats.currentHitPoints;
     }
 }

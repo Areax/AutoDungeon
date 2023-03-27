@@ -42,4 +42,9 @@ public class BasicAttack : Action
     {
         tickLastUsed = currTick;
     }
+
+    public bool ShouldSelfTarget()
+    {
+        return false;
+    }
 }

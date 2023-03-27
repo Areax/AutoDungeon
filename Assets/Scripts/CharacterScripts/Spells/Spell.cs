@@ -36,4 +36,8 @@ public class Spell : MonoBehaviour, Action
     {
         tickLastUsed = currTick;
     }
+    public bool ShouldSelfTarget()
+    {
+        return spellData.targetSelf;
+    }
 }

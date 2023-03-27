@@ -27,7 +27,7 @@ public class ActionEffect
             newStats.currentStrength = stats.currentStrength;
             newStats.maxStrength = stats.maxStrength;
             newStats.currentWisdom = stats.currentWisdom;
-            newStats.maxWisdon = stats.maxWisdon;
+            newStats.maxWisdom = stats.maxWisdom;
             newStats.currentIntelligence = stats.currentIntelligence;
             newStats.maxIntelligence = stats.maxIntelligence;
             newEffectStats.Add(stats);

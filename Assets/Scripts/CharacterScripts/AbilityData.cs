@@ -9,4 +9,5 @@ public class AbilityData : ScriptableObject
     public ActionEffect effect;
     public int cooldown;
     public int castTime;
+    public bool targetSelf;
 }

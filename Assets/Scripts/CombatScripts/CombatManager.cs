@@ -7,33 +7,40 @@ public class CombatManager : MonoBehaviour
     private int currentTick = 0;
     public Player player;
     public List<Enemy> enemies = new List<Enemy>();
-    private Dictionary<Enemy, List<EffectManager>> activeEffects = new Dictionary<Enemy, List<EffectManager>>();
+    private Dictionary<Character, List<EffectManager>> activeEffects = new Dictionary<Character, List<EffectManager>>();
 
     public void UseAction(Action action, List<Enemy> enemies)
     {
         action.UseAction(currentTick);
 
+        Character target = getTarget(action);
+        Stats playerStats = GetPlayer().playerStats;
+        ActionEffect actionEffect = action.GetEffect(playerStats).Clone();
+        if (!activeEffects.ContainsKey(target))
+        {
+            activeEffects[target] = new List<EffectManager>();
+        }
+        activeEffects[target].Add(new EffectManager(actionEffect));
+        int castTime = action.GetCastTime();
+        for (int tick = 0; tick < castTime; tick++)
+        {
+            ProcessTick();
+        }
+    }
+
+    private Character getTarget(Action action)
+    {
+        if (action.ShouldSelfTarget())
+        {
+            return player;
+        }
         Enemy target = player.target;
         //  if the player does not have a target set it to the first enemy
         if (target == null)
         {
             target = enemies[0];
         }
-        Stats playerStats = GetPlayer().playerStats;
-        ActionEffect attackEffect = action.GetEffect(playerStats).Clone();
-        enemies.ForEach((Enemy enemy) =>
-        {
-            if (!activeEffects.ContainsKey(enemy))
-            {
-                activeEffects[enemy] = new List<EffectManager>();
-            }
-            activeEffects[enemy].Add(new EffectManager(attackEffect));
-        });
-        int castTime = action.GetCastTime();
-        for (int tick = 0; tick < castTime; tick++)
-        {
-            ProcessTick();
-        }
+        return target;
     }
 
     private class EffectManager {
@@ -49,18 +56,18 @@ public class CombatManager : MonoBehaviour
 
     public void ProcessTick()
     {
-        foreach (Enemy enemy in activeEffects.Keys)
+        foreach (Character character in activeEffects.Keys)
         {
-            Debug.Log("Before tick " + currentTick + " enemy " + enemy.GetName() + " health: " + enemy.enemyStats.curHitPoints);
+            Debug.Log("Before tick " + currentTick + " character " + character.GetName() + " health: " + character.GetHealth());
         }
         Debug.Log("Starting to process tick " + currentTick);
-        foreach (Enemy enemy in activeEffects.Keys)
+        foreach (Character character in activeEffects.Keys)
         {
-            List<EffectManager> actionEffects = activeEffects[enemy];
+            List<EffectManager> actionEffects = activeEffects[character];
             foreach (EffectManager effectManager in actionEffects)
             {
                 ActionEffect effect = effectManager.effect;
-                enemy.UpdateCharacterStats(effect.effectStats[effectManager.relativeTick]);
+                character.UpdateCharacterStats(effect.effectStats[effectManager.relativeTick]);
                 effectManager.relativeTick += 1;
             }
             // Loop over the effects backwards, removing the ones which have finished
@@ -74,9 +81,9 @@ public class CombatManager : MonoBehaviour
             }
         }
         currentTick += 1;
-        foreach (Enemy enemy in activeEffects.Keys)
+        foreach (Character character in activeEffects.Keys)
         {
-            Debug.Log("After tick " + currentTick + " enemy " + enemy.GetName() + " health: " + enemy.enemyStats.curHitPoints);
+            Debug.Log("After tick " + currentTick + " character " + character.GetName() + " health: " + character.GetHealth());
         }
     }
 

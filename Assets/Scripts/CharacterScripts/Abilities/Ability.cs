@@ -33,6 +33,11 @@ public class Ability : MonoBehaviour, Action
         return tickLastUsed + abilityData.cooldown;
     }
 
+    public bool ShouldSelfTarget()
+    {
+        return abilityData.targetSelf;
+    }
+
     public void UseAction(int currTick)
     {
         tickLastUsed = currTick;

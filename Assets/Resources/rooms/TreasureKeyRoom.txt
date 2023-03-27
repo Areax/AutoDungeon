@@ -7,7 +7,7 @@
 ],
 "doors": [
 {"doorName": "natureDoor", "doorPosition": "right", "doorStatus":"Locked", "lockType":"Nature", "lockCheck": [5,10], "doorChance": 100},
-{"doorName": "strengthDoor", "doorPosition":"left", "doorStatus":"Locked", "lockType": "Strength", "lockCheck": [5,10], "doorChance": 100},
+{"doorName": "athleticsDoor", "doorPosition":"left", "doorStatus":"Locked", "lockType": "Athletics", "lockCheck": [5,10], "doorChance": 100},
 {"doorName": "keyDoor", "doorPosition":"forward", "doorStatus":"Locked", "lockType": "Key", "lockCheck": [1,1], "doorChance": 100}
 ]
 }

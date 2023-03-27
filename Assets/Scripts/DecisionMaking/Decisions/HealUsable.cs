@@ -15,12 +15,12 @@ public class HealUsable : IDecision
 
     }
 
-    public HealUsable(Character agent)
+    public HealUsable(Enemy agent)
     {
 
     }
 
-    public IDecision MakeDecision(Character agent)
+    public IDecision MakeDecision(Enemy agent)
     {
         return null;
     }

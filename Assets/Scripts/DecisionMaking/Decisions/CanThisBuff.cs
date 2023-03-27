@@ -19,23 +19,23 @@ public class CanThisBuff : IDecision
 
     }
 
-    public CanThisBuff(Character agent)
+    public CanThisBuff(Enemy agent)
     {
-
+        canBuff = agent.canBuff;
     }
 
-    public IDecision MakeDecision(Character agent)
+    public IDecision MakeDecision(Enemy agent)
     {
         if (canBuff)
         {
             Debug.Log("This unit can buff, entering buff usable decision.");
-            return null;
+            return trueBranch.MakeDecision(agent);
         }
 
         else
         {
             Debug.Log("This unit cannot heal, entering attack calculation decision.");
-            return null;
+            return falseBranch.MakeDecision(agent);
         }
     }
 }

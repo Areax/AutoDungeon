@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, Character
 {
+    public List<Spell> spells;
+    public List<Ability> abilities;
 
     //  field for this enemies name
     public string enemyName;
@@ -51,6 +53,8 @@ public class Enemy : MonoBehaviour, Character
         public int curCharisma;
     }
 
+
+
     //  field for the level of this unit
     public int level;
 
@@ -58,9 +62,12 @@ public class Enemy : MonoBehaviour, Character
 
     [SerializeField] private Player playerRef;
     [SerializeField] private GameObject targetIndicator;
-    [SerializeField] private CombatManager combatManager;
+    [SerializeField] public CombatManager combatManager;
 
     public bool isTargeted = false;
+
+    public bool canHeal = false;
+    public bool canBuff = false;
 
     public int GetLevel()
     {

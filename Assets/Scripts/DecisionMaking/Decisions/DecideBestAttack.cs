@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DecideBestAttack : IDecision
@@ -14,13 +15,18 @@ public class DecideBestAttack : IDecision
 
     }
 
-    public DecideBestAttack(Character agent)
+    public DecideBestAttack(Enemy agent)
     {
 
     }
 
-    public IDecision MakeDecision(Character agent)
+    public IDecision MakeDecision(Enemy agent)
     {
+        BasicAttack basicAttack = new BasicAttack();
+        Player player = agent.combatManager.player;
+
+        
+        
         return null;
     }
 }

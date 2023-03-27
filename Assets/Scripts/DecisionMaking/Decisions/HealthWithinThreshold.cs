@@ -17,13 +17,23 @@ public class HealthWithinThreshold : IDecision
 
     }
 
-    public HealthWithinThreshold(Character agent)
+    public HealthWithinThreshold(Enemy agent)
     {
 
     }
 
-    public IDecision MakeDecision(Character agent)
+    public IDecision MakeDecision(Enemy agent)
     {
-        return null;
+        //  just check if below 50% health to be lazy
+        if (agent.enemyStats.curHitPoints < agent.enemyStats.baseHitPoints / 2)
+        {
+            Debug.Log("Entering true branch of HealWithinThreshold Deicion -> heal usable decision");
+            return trueBranch.MakeDecision(agent);
+        }
+        else
+        {
+            Debug.Log("Entering false branch of HealWithinThreshold Decision -> CanThisBuff decision");
+            return falseBranch.MakeDecision(agent);
+        }
     }
 }

@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CombatManager : MonoBehaviour
 {
     private int currentTick = 0;
+    public List<Player> players = new List<Player>();
     public Player player;
+
     public List<Enemy> enemies = new List<Enemy>();
+
+    private void Awake()
+    {
+        //  this is a hacky way of making sure we have a "list" of enemies for the enemy ai to use actions
+        player = players[0];
+    }
 
     public void UseAction(Action action, List<Enemy> enemies)
     {

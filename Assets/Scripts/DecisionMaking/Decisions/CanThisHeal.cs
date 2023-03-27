@@ -19,23 +19,23 @@ public class CanThisHeal : IDecision
 
     }
 
-    public CanThisHeal(Character agent)
+    public CanThisHeal(Enemy agent)
     {
         
     }
 
-    public IDecision MakeDecision(Character agent)
+    public IDecision MakeDecision(Enemy agent)
     {
         if (canHeal)
         {
             Debug.Log("This unit can heal, entering threshold check decision.");
-            return null;
+            return trueBranch.MakeDecision(agent);
         }
 
         else
         {
             Debug.Log("This unit cannot heal, entering can this unit buff decision.");
-            return null;
+            return falseBranch.MakeDecision(agent);
         }
     }
 }

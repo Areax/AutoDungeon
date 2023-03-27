@@ -5,5 +5,5 @@ using UnityEngine;
 // Interface for decision tree implementation
 public interface IDecision
 {
-    IDecision MakeDecision(Character character);
+    IDecision MakeDecision(Enemy agent);
 } 

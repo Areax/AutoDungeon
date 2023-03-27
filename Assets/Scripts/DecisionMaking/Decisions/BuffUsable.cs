@@ -16,12 +16,12 @@ public class BuffUsable : IDecision
 
     }
 
-    public BuffUsable(Character agent)
+    public BuffUsable(Enemy agent)
     {
 
     }
 
-    public IDecision MakeDecision(Character agent)
+    public IDecision MakeDecision(Enemy agent)
     {
         return null;
     }

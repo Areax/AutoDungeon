@@ -15,12 +15,12 @@ public class MainScreen : MonoBehaviour
         Door door = new Door();
         door.name = "dabana";
         door.status = DoorStatus.Open;
-        door.locktype = DoorLockType.Strength;
+        door.locktype = DoorLockType.Athletics;
 
         Door door2 = new Door();
         door2.name = "door2!";
         door2.status = DoorStatus.Closed;
-        door2.locktype = DoorLockType.Magic;
+        door2.locktype = DoorLockType.Arcana;
         room.doors.Add(door);
         room.doors.Add(door2);
     }

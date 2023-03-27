@@ -13,7 +13,7 @@ public class RoomImport
     [SerializeField] public int level;
 
     [SerializeField]
-    public RoomAlignment alignment;
+    public string roomAlignment;
 
     [SerializeField] public DoorImport[] doors;
 

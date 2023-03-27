@@ -43,6 +43,7 @@ public class DungeonRoomGenerator : MonoBehaviour
         }
 
         room.level = lvl;
+        Enum.TryParse(import.roomAlignment, out room.alignment);
        
         room.doors = new List<Door>();
         // doors
@@ -109,10 +110,15 @@ public class DungeonRoomGenerator : MonoBehaviour
     {
         var list = rooms.FindAll((r) => r.level == lvl);
 
-        var chance = Random.Range(1, 4) < 2;
+        var chance = Random.Range(1, 5) < 4;
         if (lockType != DoorLockType.None && lockType != DoorLockType.Key && chance)
         {
-            list = rooms.FindAll((r) => r.alignment.ToString() == lockType.ToString());
+            
+            list = rooms.FindAll((r) =>
+            {
+                return r.roomAlignment == lockType.ToString();
+            });
+            Debug.Log(list.Count);
         }
 
         if (list.Count < 1)

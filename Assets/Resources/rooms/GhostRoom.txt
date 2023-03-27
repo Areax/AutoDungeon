@@ -1,6 +1,6 @@
 {
 "name": "GhostRoom",
-"roomAlignment": "Strength",
+"roomAlignment": "Athletics",
 "type": "monster",
 "level": 2,
 "enemies": [

@@ -44,6 +44,7 @@ public class DungeonRoomGenerator : MonoBehaviour
 
         room.level = lvl;
         Enum.TryParse(import.roomAlignment, out room.alignment);
+        room.name = import.name;
        
         room.doors = new List<Door>();
         // doors
@@ -118,7 +119,6 @@ public class DungeonRoomGenerator : MonoBehaviour
             {
                 return r.roomAlignment == lockType.ToString();
             });
-            Debug.Log(list.Count);
         }
 
         if (list.Count < 1)

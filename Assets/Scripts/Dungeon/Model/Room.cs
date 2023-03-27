@@ -6,6 +6,9 @@ using System.Collections.Generic;
 public class Room
 {
     [SerializeField]
+    public string name;
+    
+    [SerializeField]
     public RoomAlignment alignment;
     
     [SerializeField]

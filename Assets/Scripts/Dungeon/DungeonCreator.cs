@@ -14,29 +14,29 @@ public class DungeonCreator : MonoBehaviour
     {
         //for (int i = 0; i < 5; i++)
         //{
-            dungeon = generateDungeon(1);
+            dungeon = generateTestDungeon(1);
             //Debug.Log(JsonUtility.ToJson(dungeon));
         //}
     }
 
     // Update is called once per frame
-    List<Room> generateDungeon(int level)
+    List<Room> generateTestDungeon(int level)
     {
         var dungeonRun = new List<Room>();
         
         //generate first room 
         dungeonRun.Add(roomGenerator.generateRoom(level, DoorLockType.None));
-        Debug.Log("Room0: "+ JsonUtility.ToJson(dungeonRun[0]));
+        Debug.Log($"Generated Room0: {dungeonRun[0].name}");
         
         for (int i = 1; i < 5; i++)
         {
             //openRandom door 
             var lastRoom = dungeonRun[^1];
             var lastDoor = lastRoom.doors[Random.Range(0, lastRoom.doors.Count)];
-            Debug.Log($"door{i}: {JsonUtility.ToJson(lastDoor)}");
+            Debug.Log($"Used door{i}: {lastDoor.name} \n {JsonUtility.ToJson(lastDoor, true)}");
             
             Room room = roomGenerator.generateRoom(level, lastDoor.locktype);
-            Debug.Log($"room{i}: {JsonUtility.ToJson(room)}");
+            Debug.Log($"Generated Room{i}: {room.name} \n {JsonUtility.ToJson(room, true)}");
             dungeonRun.Add(room);
         }
         

@@ -4,24 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class DungeonRoomGenerator : MonoBehaviour
+public class DungeonRoomGenerator
 {
 
     [SerializeField]
     public List<RoomImport> rooms;
 
-    public void Awake()
+    public DungeonRoomGenerator()
     {
+        rooms = new List<RoomImport>();
         var roomFiles = Resources.LoadAll<TextAsset>("rooms");
         foreach (var text in roomFiles)
         {
             rooms.Add(JsonUtility.FromJson<RoomImport>(text.text));
         }
-    }
-
-    private void Start()
-    {
-        rooms = new List<RoomImport>();
     }
 
     public Room generateRoom(int level, DoorLockType lockType)

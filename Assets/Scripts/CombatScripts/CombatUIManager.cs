@@ -11,14 +11,12 @@ public class CombatUIManager : MonoBehaviour
     public void ClickFightButton()
     {
         BasicAttack basicAttack = new BasicAttack();
-        // TODO enemy selection
         List<Enemy> enemies = combatManager.GetEnemies();
         if (enemies.Count == 0)
         {
             Debug.LogError("Combat manager returned empty list of enemies!");
             return;
         }
-        // Enemy selectedEnemy = enemies[0];
         combatManager.UseAction(basicAttack, enemies);
     }
     public void ClickSpellButton()

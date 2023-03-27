@@ -8,7 +8,7 @@ public class DungeonRoomGenerator : MonoBehaviour
 {
 
     [SerializeField]
-    public List<RoomImport> rooms = new List<RoomImport>();
+    public List<RoomImport> rooms;
 
     public void Awake()
     {
@@ -17,6 +17,11 @@ public class DungeonRoomGenerator : MonoBehaviour
         {
             rooms.Add(JsonUtility.FromJson<RoomImport>(text.text));
         }
+    }
+
+    private void Start()
+    {
+        rooms = new List<RoomImport>();
     }
 
     public Room generateRoom(int level, DoorLockType lockType)

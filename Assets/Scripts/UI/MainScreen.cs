@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,40 +9,55 @@ public class MainScreen : MonoBehaviour
 {
     public GameObject doorPrefab;
 
-    void test()
+    GameObject interactableMainUi;
+    DungeonRoomGenerator dungeonRoomGenerator;
+    Room currentRoom;
+
+    private void Start()
+    {
+        interactableMainUi = GameObject.FindGameObjectWithTag("InteractableMainUI");
+        dungeonRoomGenerator = new DungeonRoomGenerator();
+    }
+
+    public void GenerateStartingRoom()
     {
         Room room = new Room();
-        room.doors = new List<Door>();
-        Door door = new Door();
-        door.name = "dabana";
-        door.status = DoorStatus.Open;
-        door.locktype = DoorLockType.Athletics;
+        currentRoom = room;
+        int randInt = UnityEngine.Random.Range(1, 5);
+        
+        for (int i = 0; i < randInt; i++)
+        {
+            Door door = new Door();
+            door.name = "Dungeon Entrance #" + i;
+            door.status = DoorStatus.Open;
+            room.doors.Add(door);
+        }
 
-        Door door2 = new Door();
-        door2.name = "door2!";
-        door2.status = DoorStatus.Closed;
-        door2.locktype = DoorLockType.Arcana;
-        room.doors.Add(door);
-        room.doors.Add(door2);
+        GenerateDoorTags(room);
+        HideHighLevelButtons();
+    }
+
+    private void HideHighLevelButtons()
+    {
+        GameObject buttonLayer = GameObject.FindGameObjectWithTag("ButtonLayer");
+        buttonLayer.SetActive(false);
     }
 
     public void GenerateDoorTags(Room room)
     {
-        Rect halfSize = this.GetComponent<RectTransform>().rect;
-        Debug.Log("width and height: " + halfSize.x + " " + halfSize.y);
+        Rect halfSize = interactableMainUi.GetComponent<RectTransform>().rect;
         for (int i = 0; i < room.doors.Count; i++)
         {
             float xPosition = halfSize.x * 2 / (room.doors.Count + 1) * (i + 1) - halfSize.x;
             Vector3 tagPosition = new Vector3(xPosition, 0, 0);
-            float tagHeight = this.transform.GetComponent<RectTransform>().rect.height * 0.8f;
+            float tagHeight = interactableMainUi.transform.GetComponent<RectTransform>().rect.height * 0.8f;
             GenerateDoorTag(tagPosition, tagHeight, room.doors[i]);
         }
     }
 
     private Button GenerateDoorTag(Vector3 tagPosition, float tagHeight, Door door)
     {
-
-        GameObject gameObject = Instantiate(doorPrefab, this.transform);
+        GameObject gameObject = Instantiate(doorPrefab, interactableMainUi.transform);
         gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, tagHeight);
         gameObject.transform.localPosition = tagPosition;
         var button = gameObject.GetComponentInChildren<Button>();
@@ -49,15 +65,25 @@ public class MainScreen : MonoBehaviour
         TextMeshProUGUI dungeonName = gameObject.GetComponentsInChildren<Transform>().First(t => t.gameObject.name == "Name").gameObject.GetComponent<TextMeshProUGUI>();
         dungeonName.text = door.name;
         TextMeshProUGUI dungeonDescription = gameObject.GetComponentsInChildren<Transform>().First(t => t.gameObject.name == "Description").gameObject.GetComponent<TextMeshProUGUI>();
-        dungeonDescription.text = "Level: ???\nType: " + door.locktype;
+        dungeonDescription.text = "Level: 1\nType: " + door.locktype;
 
         return button;
     }
 
     public void OnEnterRoom()
     {
-        // generateRooms()
-        // disable all buttons
-        Debug.Log("Ta-Da!");
+        TextMeshProUGUI dungeonDescription = interactableMainUi.transform.parent.GetComponentsInChildren<Transform>().First(t => t.gameObject.name == "Description").gameObject.GetComponent<TextMeshProUGUI>();
+        string[] split = dungeonDescription.text.Split("\n");
+        int level = Int32.Parse(Regex.Match(split[0], @"\d+").Value);
+        string type = split[1].Substring(split[1].IndexOf(':') + 1).Trim();
+        DoorLockType doorLockType = Enum.Parse<DoorLockType>(type);
+
+        currentRoom = dungeonRoomGenerator.generateRoom(level, doorLockType);
+        
+
+        foreach(Transform ch in interactableMainUi.transform)
+        {
+            Destroy(ch.gameObject);
+        }
     }
 }

@@ -110,17 +110,6 @@ public class Enemy : MonoBehaviour, Character
         combatManager = FindObjectOfType<CombatManager>();
     }
 
-    public void OnMouseEnter()
-    {
-        Debug.Log("mouse entered " + this.GetName() + " collider");
-
-    }
-
-    public void OnMouseExit()
-    {
-        Debug.Log("mouse exited " + this.GetName() + " collider");
-    }
-
     public void OnMouseOver()
     {
         //  check if the left mouse button is pressed over this enemy

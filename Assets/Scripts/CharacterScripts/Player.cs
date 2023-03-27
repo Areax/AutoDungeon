@@ -9,6 +9,8 @@ public class Player : MonoBehaviour, Character
 
     public Stats playerStats;
 
+
+    //  reference to the enemy the player wishes to target
     public Enemy target = null;
 
     public int GetLevel()

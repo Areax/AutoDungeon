@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviour, Character
 
     [SerializeField] private Player playerRef;
     [SerializeField] private GameObject targetIndicator;
+    [SerializeField] private CombatManager combatManager;
 
     public bool isTargeted = false;
 
@@ -105,6 +106,8 @@ public class Enemy : MonoBehaviour, Character
 
         //  initialize ref to player in the jankiest way possible
         playerRef = FindObjectOfType<Player>();
+        //  initialize ref to the combat manager in the jankiest way possible
+        combatManager = FindObjectOfType<CombatManager>();
     }
 
     public void OnMouseEnter()
@@ -162,8 +165,9 @@ public class Enemy : MonoBehaviour, Character
             case false:
                 targetIndicator.SetActive(isTargeted);
                 break;
-
         }
+
+
 
     }
 
@@ -177,5 +181,14 @@ public class Enemy : MonoBehaviour, Character
         this.enemyStats.curWisdom += changes.currentWisdom;
         this.enemyStats.curIntelligence += changes.currentIntelligence;
         this.enemyStats.curCharisma += changes.currentCharisma;
+
+        //  check death state here so it is not done in update/every frame
+        if (this.enemyStats.curHitPoints <= 0)
+        {
+            //  remove this enemy from the combat manager enemies list
+            combatManager.enemies.Remove(this);
+            //  destroy this game object
+            Destroy(this.gameObject);
+        }
     }
 }

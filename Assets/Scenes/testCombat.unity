@@ -339,6 +339,7 @@ MonoBehaviour:
   player: {fileID: 578457709}
   enemies:
   - {fileID: 640437861}
+  - {fileID: 1812773263}
 --- !u!4 &533715556
 Transform:
   m_ObjectHideFlags: 0
@@ -864,6 +865,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759206199}
   m_CullTransparentMesh: 1
+--- !u!114 &1812773263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7348521976366746597, guid: b08d730c329377e4aa0e7b4a4a046275, type: 3}
+  m_PrefabInstance: {fileID: 358719667}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ad594aa1f14574cb6027af9a0c116e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1898533280
 GameObject:
   m_ObjectHideFlags: 0

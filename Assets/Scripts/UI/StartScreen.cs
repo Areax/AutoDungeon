@@ -5,13 +5,11 @@ public class StartScreen : MonoBehaviour
 {
     public void StartGame()
     {
-        GlobalState.PLAYER_LOAD = false;
-        SceneManager.LoadScene("StartGame");
+        SceneManager.LoadScene("CreateCharacter");
     }
     public void LoadGame()
     {
-        GlobalState.PLAYER_LOAD = true;
-        SceneManager.LoadScene("StartGame");
+        SceneManager.LoadScene("LoadGame");
     }
 
     public void LoadSettings()

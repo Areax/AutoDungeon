@@ -8,12 +8,23 @@ public class DungeonRoomGenerator : MonoBehaviour
 {
 
     [SerializeField]
-    public List<MonsterRoom> rooms = new List<MonsterRoom>();
-    
+    public List<RoomImport> rooms = new List<RoomImport>();
+
+    public void Start()
+    {
+        var roomFiles = Resources.LoadAll<TextAsset>("rooms");
+        foreach (var text in roomFiles)
+        {
+            Debug.Log(text.name);
+            rooms.Add(JsonUtility.FromJson<RoomImport>(text.text));
+        }
+    }
+
     public Room generateRoom(int level, DoorLockType lockType)
     {
         RoomImport import = ResourceDao.ImportJson<RoomImport>("rooms/testroom");
 
+        
         // room type
         Room room = new Room();
         if (import.type == "monster")

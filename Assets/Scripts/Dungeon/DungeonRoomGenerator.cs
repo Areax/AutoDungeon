@@ -58,14 +58,10 @@ public class DungeonRoomGenerator : MonoBehaviour
             var importEnemy = import.enemies[0];
             for (int i = 0; i < Random.Range(importEnemy.enemyCount[0], importEnemy.enemyCount[1]); i++)
             {
-                var enemy = new Enemy
-                {
-                    type = importEnemy.enemyType,
-                    level =  Random.Range(importEnemy.enemyLevel[0], importEnemy.enemyLevel[1]),
-                    // get values for appropriate attack/defence per level for each enemy
-                    attack = 1,
-                    defense = 1, 
-                };
+                var enemy = ScriptableObject.CreateInstance<EnemyData>();
+                enemy.enemyName = importEnemy.enemyType;
+                enemy.level = Random.Range(importEnemy.enemyLevel[0], importEnemy.enemyLevel[1]);
+                enemy.enemyStats = new Stats();
                 (room as MonsterRoom)?.enemies.Add(enemy);
             }
         }

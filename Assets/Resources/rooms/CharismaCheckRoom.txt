@@ -1,0 +1,16 @@
+{
+"name": "CharismaCheckRoom",
+"roomAlignment": "Charisma",
+"type": "event",
+"level": 2,
+"NPC": [
+{ "NPCType": "Goblin", "lockType":"Charisma", "lockCheck": [1,5] }
+],
+"rewards": [
+{"rewardsType": "Key", "rewardsCount": [1,1]}
+],
+"doors": [
+{"doorName": "charismaDoor", "doorPosition": "left", "doorStatus":"Locked", "lockType":"Charisma", "lockCheck": [1,5], "doorChance": 100},
+{"doorName": "keyDoor", "doorPosition":"right", "doorStatus":"Locked", "lockType": "Key", "lockCheck": [1,1], "doorChance": 100}
+]
+}

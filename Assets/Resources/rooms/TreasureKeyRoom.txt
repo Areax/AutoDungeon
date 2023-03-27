@@ -11,5 +11,3 @@
 {"doorName": "keyDoor", "doorPosition":"forward", "doorStatus":"Locked", "lockType": "Key", "lockCheck": [1,1], "doorChance": 100}
 ]
 }
-
-{

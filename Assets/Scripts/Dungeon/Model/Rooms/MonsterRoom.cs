@@ -10,7 +10,7 @@ public class MonsterRoom : Room
 {
 
     [SerializeField]
-    public List<Enemy> enemies = new List<Enemy>();
+    public List<EnemyData> enemies = new List<EnemyData>();
 
     [SerializeField]
     public List<Item> rewards = new List<Item>();

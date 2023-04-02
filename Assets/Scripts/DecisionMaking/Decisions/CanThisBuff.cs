@@ -34,7 +34,7 @@ public class CanThisBuff : IDecision
 
         else
         {
-            Debug.Log("This unit cannot heal, entering attack calculation decision.");
+            Debug.Log("This unit cannot buff, entering attack calculation decision.");
             return falseBranch.MakeDecision(agent);
         }
     }

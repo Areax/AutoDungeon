@@ -38,6 +38,20 @@ public class CombatManager : MonoBehaviour
             player.target.UpdateCharacterStats(attackEffect.effectStats);
             Debug.Log(player.target.enemyStats.curHitPoints);
         }
+
+        //  iterate through list of enemies
+        foreach(Enemy enemy in enemies)
+        {
+            //  assign the current decision to the enemies root decision
+            IDecision curDecision = enemy.rootDecision;
+
+            //  while curDecision is NOT null
+            while (curDecision != null)
+            {
+                //  make decisions!
+                curDecision = curDecision.MakeDecision(enemy);
+            }
+        }
     }
 
     public List<Action> GetUsableActions()

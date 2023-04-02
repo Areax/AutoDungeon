@@ -32,3 +32,6 @@ MonoBehaviour:
     timeBetweenEffects: 0
     numberOfApplications: 1
   cooldown: 10
+  buff: 1
+  heal: 0
+  attack: 0

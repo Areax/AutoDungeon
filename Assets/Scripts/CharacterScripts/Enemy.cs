@@ -60,14 +60,19 @@ public class Enemy : MonoBehaviour, Character
 
     public EnemyData enemyData;
 
+    //  references for the player, the gameobject for the target indicator, and the combat manager
     [SerializeField] private Player playerRef;
     [SerializeField] private GameObject targetIndicator;
     [SerializeField] public CombatManager combatManager;
 
+    //  tracks wether this enemy is targeted by the player
     public bool isTargeted = false;
 
+    //  flags for tracking whether this enemy can heal or buff - used in decision making
     public bool canHeal = false;
     public bool canBuff = false;
+
+    public IDecision rootDecision = null;
 
     public int GetLevel()
     {
@@ -88,8 +93,13 @@ public class Enemy : MonoBehaviour, Character
     //  for debugging enemy death--
     public void Awake()
     {
+        //  initialize ref to player in the jankiest way possible
+        playerRef = FindObjectOfType<Player>();
+        //  initialize ref to the combat manager in the jankiest way possible
+        combatManager = FindObjectOfType<CombatManager>();
 
         // initialize this enemies stats using the base stats in enemyData
+        #region Stat Initialization
         this.enemyStats.baseHitPoints = enemyData.enemyStats.maxHitPoints;
         this.enemyStats.curHitPoints = this.enemyStats.baseHitPoints;
         
@@ -111,10 +121,100 @@ public class Enemy : MonoBehaviour, Character
         this.enemyStats.baseCharisma = enemyData.enemyStats.maxCharisma;
         this.enemyStats.curCharisma = this.enemyStats.baseCharisma;
 
-        //  initialize ref to player in the jankiest way possible
-        playerRef = FindObjectOfType<Player>();
-        //  initialize ref to the combat manager in the jankiest way possible
-        combatManager = FindObjectOfType<CombatManager>();
+        #endregion
+
+        //  assigning the canHeal / canBuff flags
+        #region Flag Assignment
+        //  check if the list of abilities & spells is empty
+        if (abilities.Count == 0 && spells.Count == 0)
+        {
+            //  if so, this unit can only attack
+            canHeal = false;
+            canBuff = false;
+        }
+        //  otherwise, one of them isn't empty
+        else
+        {
+            //  check if the abilities list isn't empty
+            if (abilities.Count != 0)
+            {
+                //  iterate through the abilities
+                foreach(Ability ability in abilities)
+                {
+                    //  check if an ability can buff
+                    if (ability.IsBuff())
+                    {
+                        //  if so this unit can buff
+                        canBuff = ability.IsBuff();
+                    }
+                    //  check if an ability can heal
+                    if (ability.IsHeal())
+                    {
+                        //  if so this unit can heal
+                        canHeal = ability.IsHeal();
+                    }
+
+                    //  otherwise, do nothing
+                }
+            }
+            // check if the spells list isn't empty
+            if (spells.Count != 0)
+            {
+                //  iterate through the spells on this enemy
+                foreach (Spell spell in spells)
+                {
+                    //  check if a spell is a buff
+                    if (spell.IsBuff())
+                    {
+                        //  if so mark that this unit can buff
+                        canBuff = spell.IsBuff();
+                    }
+                    //  check if a spell is a heal
+                    if (spell.IsHeal())
+                    {
+                        //  if so mark that this unit can heal
+                        canHeal = spell.IsHeal();
+                    }
+
+                    //  otherwise, do nothing
+                }
+            }
+        }
+        #endregion
+
+        //  Decision Tree Generation
+        #region Decision Tree Generation
+
+        //  initialize the root of the tree
+        CanThisHeal root = new CanThisHeal(this);
+
+        //  initialize the nodes of the tree
+        HealthWithinThreshold healInThreshold = new HealthWithinThreshold(this);
+        HealUsable healUsable = new HealUsable(this);
+        CanThisBuff hasBuffs = new CanThisBuff(this);
+        BuffUsable buffUsable = new BuffUsable(this);
+        DecideBestAttack calcAttack = new DecideBestAttack(this);
+
+        //  assign branches to root
+        root.trueBranch = healInThreshold;
+        root.falseBranch = hasBuffs;
+
+        //  assign branches to healthreshold check 
+        healInThreshold.trueBranch = healUsable;
+        healInThreshold.falseBranch = hasBuffs;
+
+        //  assign false branch to healusable check
+        healUsable.falseBranch = hasBuffs;
+
+        //  assign branches to canthisbuff check
+        hasBuffs.trueBranch = buffUsable;
+        hasBuffs.falseBranch = calcAttack;
+
+        //  assign branches to buffusuable check
+        buffUsable.falseBranch = calcAttack;
+
+        rootDecision = root;
+        #endregion
     }
 
     public void OnMouseOver()
@@ -186,5 +286,21 @@ public class Enemy : MonoBehaviour, Character
             //  destroy this game object
             Destroy(this.gameObject);
         }
+    }
+
+    //  used for taking actions given this enemies current stats
+    public Stats GetCurrentStats()
+    {
+        Stats curStats = new Stats();
+
+        curStats.currentHitPoints = this.enemyStats.curHitPoints;
+        curStats.currentSpeed = this.enemyStats.curSpeed;
+        curStats.currentDexterity = this.enemyStats.curDexterity;
+        curStats.currentStrength = this.enemyStats.curStrength;
+        curStats.currentWisdom = this.enemyStats.curWisdom;
+        curStats.currentIntelligence = this.enemyStats.curIntelligence;
+        curStats.currentCharisma = this.enemyStats.curCharisma;
+
+        return curStats;
     }
 }

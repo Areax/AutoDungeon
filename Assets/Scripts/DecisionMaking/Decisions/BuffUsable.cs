@@ -23,6 +23,7 @@ public class BuffUsable : IDecision
 
     public IDecision MakeDecision(Enemy agent)
     {
+        Debug.Log("This unit would be determining if a buff is usable but that logic is not implemented");
         return null;
     }
 }

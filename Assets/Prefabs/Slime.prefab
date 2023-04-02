@@ -183,6 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ad594aa1f14574cb6027af9a0c116e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spells: []
+  abilities:
+  - {fileID: 0}
   enemyName: Slime
   enemyStats:
     baseHitPoints: 0
@@ -203,7 +206,10 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 4712f46aef4c6c44ead9fbed66ebddd4, type: 2}
   playerRef: {fileID: 0}
   targetIndicator: {fileID: 131261097570847063}
+  combatManager: {fileID: 0}
   isTargeted: 0
+  canHeal: 0
+  canBuff: 0
 --- !u!60 &7348521976366746598
 PolygonCollider2D:
   m_ObjectHideFlags: 0

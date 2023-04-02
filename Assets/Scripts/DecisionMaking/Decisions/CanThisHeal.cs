@@ -21,7 +21,7 @@ public class CanThisHeal : IDecision
 
     public CanThisHeal(Enemy agent)
     {
-        
+        canHeal = agent.canHeal;
     }
 
     public IDecision MakeDecision(Enemy agent)

@@ -31,4 +31,17 @@ public class Spell : MonoBehaviour, Action
     {
         tickLastUsed = currTick;
     }
+
+    public bool IsBuff()
+    {
+        return spellData.buff;
+    }
+    public bool IsHeal()
+    {
+        return spellData.heal;
+    }
+    public bool IsAttack()
+    {
+        return spellData.attack;
+    }
 }

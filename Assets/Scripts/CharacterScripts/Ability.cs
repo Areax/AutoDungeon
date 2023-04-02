@@ -7,6 +7,7 @@ public class Ability : Object, Action
     AbilityData abilityData;
     private int tickLastUsed = -1;
 
+
     ActionEffect Action.GetEffect(Stats playerStats)
     {
         return abilityData.effect;
@@ -30,5 +31,18 @@ public class Ability : Object, Action
     void Action.UseAction(int currTick)
     {
         tickLastUsed = currTick;
+    }
+
+    public bool IsBuff()
+    {
+        return abilityData.buff;
+    }
+    public bool IsHeal()
+    {
+        return abilityData.heal;
+    }
+    public bool IsAttack()
+    {
+        return abilityData.attack;
     }
 }
